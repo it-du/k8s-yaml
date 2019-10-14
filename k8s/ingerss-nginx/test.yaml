@@ -9,8 +9,8 @@ spec:
   ports:
   - name: http
     protocol: TCP
-    targetPort: 443
-    port: 443
+    targetPort: 80
+    port: 80
  
 ---
  
@@ -41,11 +41,11 @@ spec:
         image: hb-local.meiy365.com/library/test:3
         imagePullPolicy: Always
         ports:
-        - containerPort: 443
+        - containerPort: 80
           protocol: TCP
         livenessProbe:
           tcpSocket:
-            port: 443
+            port: 80
           initialDelaySeconds: 60
           periodSeconds: 5
           timeoutSeconds: 1
@@ -53,7 +53,7 @@ spec:
           failureThreshold: 3
         readinessProbe:
           tcpSocket:
-            port: 443
+            port: 80
           initialDelaySeconds: 60
           periodSeconds: 5
           timeoutSeconds: 1
@@ -81,4 +81,4 @@ spec:
       - path:
         backend:
           serviceName: test-nginx
-          servicePort: 443
+          servicePort: 80
